@@ -5,6 +5,8 @@ import (
 	"os"
 
 	"student/internal/conf"
+	"student/internal/pkg/tracer"
+
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
 	"github.com/go-kratos/kratos/v2/config/file"
@@ -12,6 +14,7 @@ import (
 	"github.com/go-kratos/kratos/v2/middleware/tracing"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/go-kratos/kratos/v2/transport/http"
+	"go.opentelemetry.io/otel"
 )
 
 // go build -ldflags "-X main.Version=x.y.z"
@@ -45,6 +48,15 @@ func newApp(logger log.Logger, hs *http.Server, gs *grpc.Server) *kratos.App {
 }
 
 func main() {
+	// 配置，启动链路追踪
+	url := "http://192.168.0.103:14268/api/traces"
+	Name = "kratos.service.student"
+	id = "kratos.id.student.1"
+	Version = "test-V0.0.1"
+	traceconf := tracer.NewConf(Name, id, Version, url)
+	tp, _ := traceconf.TracerProvider()
+	otel.SetTracerProvider(tp) // 为全局链路追踪
+
 	flag.Parse()
 	logger := log.With(log.NewStdLogger(os.Stdout),
 		"ts", log.DefaultTimestamp,
