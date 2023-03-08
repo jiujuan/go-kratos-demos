@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package api.helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "quickstart/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.helloworld.v1";
+
+service Student {
+	rpc CreateStudent (CreateStudentRequest) returns (CreateStudentReply);
+	rpc UpdateStudent (UpdateStudentRequest) returns (UpdateStudentReply);
+	rpc DeleteStudent (DeleteStudentRequest) returns (DeleteStudentReply);
+	rpc GetStudent (GetStudentRequest) returns (GetStudentReply);
+	rpc ListStudent (ListStudentRequest) returns (ListStudentReply);
+
+	rpc Hello (HelloReq) returns (HelloResp) {
+		option (google.api.http) = {
+		    // 定义 GET 接口，把 name 参数映射到 HelloReq
+			get: "/hello/{name}",
+			// 添加额外的接口
+			additional_bindings {
+			    // 定义了一个 POST 接口，并且把 body 映射到了 HelloReq
+				post: "/hello/{id}/sayhello/{sayname}",
+				body: "*",
+			}
+		};
+	}
+}
+message HelloReq {
+	string name    = 1;
+	string id      = 2;
+	string sayname = 3;
+}
+message HelloResp {
+	string message = 1;
+	string text    = 2;
+}
+
+
+message CreateStudentRequest {}
+message CreateStudentReply {}
+
+message UpdateStudentRequest {}
+message UpdateStudentReply {}
+
+message DeleteStudentRequest {}
+message DeleteStudentReply {}
+
+message GetStudentRequest {}
+message GetStudentReply {}
+
+message ListStudentRequest {}
+message ListStudentReply {}
