@@ -15,3 +15,6 @@ go-kratos code 在 github 上
 - [Go微服务框架go-kratos实战学习07：consul 作为服务注册和发现中心](https://www.cnblogs.com/jiujuan/p/17196383.html)
 
 - [Golang微服务框架go-kratos分析：框架架构分析](https://www.cnblogs.com/jiujuan/p/16845565.html)
+
+# 我的公众号：
+> [九卷技术录，微服务框架go-kratos分析01：框架设计理念和架构分析](https://mp.weixin.qq.com/s?__biz=MjM5NTcyOTY4Mg==&mid=2247484125&idx=1&sn=364d4633374c57707bebd2547d7568c8&chksm=a6f55aa09182d3b6e523025287f5ed6922e03b617c3f9103d72f8f3c44568ca23d3fbf58151b&token=434615109&lang=zh_CN#rd) 继续讨论
