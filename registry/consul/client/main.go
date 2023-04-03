@@ -24,7 +24,7 @@ func main() {
 	conn, err := grpc.DialInsecure(
 		context.Background(),
 		grpc.WithEndpoint("discovery:///helloworld"),
-		grpc.WithDiscovery(),
+		grpc.WithDiscovery(r),
 	)
 	if err != nil {
 		log.Fatal(err)
